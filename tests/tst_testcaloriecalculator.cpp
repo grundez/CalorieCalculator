@@ -1,25 +1,26 @@
 #include <QtTest>
+#include "caloriecalculator.h"
 
-// add necessary includes here
-
-class TestCalorieCalculatoro : public QObject
+class TestCalorieCalculator : public QObject
 {
     Q_OBJECT
 
 public:
-    TestCalorieCalculatoro();
-    ~TestCalorieCalculatoro();
+    TestCalorieCalculator();
+    ~TestCalorieCalculator();
 
 private slots:
-    void test_case1();
+    void test_createInstance();
 };
 
-TestCalorieCalculatoro::TestCalorieCalculatoro() {}
+TestCalorieCalculator::TestCalorieCalculator() {}
+TestCalorieCalculator::~TestCalorieCalculator() {}
 
-TestCalorieCalculatoro::~TestCalorieCalculatoro() {}
+void TestCalorieCalculator::test_createInstance()
+{
+    CalorieCalculator calculator; // Пытаемся создать объект
+}
 
-void TestCalorieCalculatoro::test_case1() {}
 
-QTEST_APPLESS_MAIN(TestCalorieCalculatoro)
-
-#include "tst_testcaloriecalculatoro.moc"
+QTEST_APPLESS_MAIN(TestCalorieCalculator)
+#include "tst_testcaloriecalculator.moc"
