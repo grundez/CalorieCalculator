@@ -15,6 +15,7 @@ private slots:
     void test_addDuplicateEntry();
     void test_removeEntry();
     void test_getEntries();
+    void test_calorieBalance();
 };
 
 TestCalorieCalculator::TestCalorieCalculator() {}
@@ -81,6 +82,28 @@ void TestCalorieCalculator::test_getEntries()
     // проверка содержимого активностей
     QCOMPARE(activities["Бег"], 200);
 }
+
+void TestCalorieCalculator::test_calorieBalance()
+{
+    CalorieCalculator calculator;
+
+    calculator.addEntry("Гречка", 500, EntryType::Food);       // +500
+    calculator.addEntry("Бег", 300, EntryType::Activity);       // -300
+
+    int balance = calculator.calculateCalorieBalance();         // 500 - 300 = 200
+    QCOMPARE(balance, 200);
+
+    calculator.addEntry("Плавание", 200, EntryType::Activity); // -200 дополнительно
+
+    balance = calculator.calculateCalorieBalance();            // 500 - 500 = 0
+    QCOMPARE(balance, 0);
+
+    calculator.addEntry("Велосипед", 100, EntryType::Activity); // -100 дополнительно
+
+    balance = calculator.calculateCalorieBalance();            // 500 - 600 = -100
+    QCOMPARE(balance, -100);
+}
+
 
 QTEST_APPLESS_MAIN(TestCalorieCalculator)
 #include "tst_testcaloriecalculator.moc"
