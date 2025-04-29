@@ -1,6 +1,7 @@
 #ifndef CALORIECALCULATOR_H
 #define CALORIECALCULATOR_H
 #include <QString>
+#include <QMap>
 
 enum class EntryType {
     Food,
@@ -12,6 +13,12 @@ class CalorieCalculator
 public:
     CalorieCalculator();
     void addEntry(const QString& name, int calories, EntryType type);
+    int calculateTotal(EntryType type) const;
+
+private:
+    QMap<QString, int> foodEntries;      // Словарь для еды
+    QMap<QString, int> activityEntries;  // Словарь для активности
+
 };
 
 #endif // CALORIECALCULATOR_H
