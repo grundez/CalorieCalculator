@@ -49,3 +49,8 @@ bool CalorieCalculator::removeEntry(const QString& name, EntryType type)
         return activityEntries.remove(name) > 0;
     }
 }
+
+QMap<QString, int> CalorieCalculator::getEntries(EntryType type) const
+{
+    return (type == EntryType::Food) ? foodEntries : activityEntries;
+}
