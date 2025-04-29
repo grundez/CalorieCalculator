@@ -54,3 +54,8 @@ QMap<QString, int> CalorieCalculator::getEntries(EntryType type) const
 {
     return (type == EntryType::Food) ? foodEntries : activityEntries;
 }
+
+int CalorieCalculator::calculateCalorieBalance() const {
+    return calculateTotal(EntryType::Food) - calculateTotal(EntryType::Activity);
+}
+

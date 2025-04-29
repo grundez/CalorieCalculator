@@ -16,6 +16,7 @@ public:
     int calculateTotal(EntryType type) const;
     bool removeEntry(const QString& name, EntryType type);
     QMap<QString, int> getEntries(EntryType type) const;
+    int calculateCalorieBalance() const;
 
 private:
     QMap<QString, int> foodEntries;      // Словарь для еды
