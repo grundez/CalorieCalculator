@@ -14,6 +14,7 @@ public:
     CalorieCalculator();
     void addEntry(const QString& name, int calories, EntryType type);
     int calculateTotal(EntryType type) const;
+    bool removeEntry(const QString& name, EntryType type);
 
 private:
     QMap<QString, int> foodEntries;      // Словарь для еды

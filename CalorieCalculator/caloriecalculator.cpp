@@ -40,3 +40,12 @@ int CalorieCalculator::calculateTotal(EntryType type) const
     }
     return totalCalories;
 }
+
+bool CalorieCalculator::removeEntry(const QString& name, EntryType type)
+{
+    if (type == EntryType::Food) {
+        return foodEntries.remove(name) > 0;
+    } else {
+        return activityEntries.remove(name) > 0;
+    }
+}
