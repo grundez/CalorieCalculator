@@ -14,6 +14,7 @@ private slots:
     void test_addFoodEntry();
     void test_addDuplicateEntry();
     void test_removeEntry();
+    void test_getEntries();
 };
 
 TestCalorieCalculator::TestCalorieCalculator() {}
@@ -58,6 +59,27 @@ void TestCalorieCalculator::test_removeEntry()
     // удаление уже удаленных записей
     QVERIFY(calculator.removeEntry("Банан", EntryType::Food) == false);
     QVERIFY(calculator.removeEntry("Бег", EntryType::Activity) == false);
+}
+
+void TestCalorieCalculator::test_getEntries()
+{
+    CalorieCalculator calculator;
+
+    calculator.addEntry("Яблоко", 100, EntryType::Food);
+    calculator.addEntry("Бег", 200, EntryType::Activity);
+
+    QMap<QString, int> food = calculator.getEntries(EntryType::Food);
+    QMap<QString, int> activities = calculator.getEntries(EntryType::Activity);
+
+    // проверка размера словарей
+    QCOMPARE(food.size(), 1);
+    QCOMPARE(activities.size(), 1);
+
+    // проверка содержимого еды
+    QCOMPARE(food["Яблоко"], 100);
+
+    // проверка содержимого активностей
+    QCOMPARE(activities["Бег"], 200);
 }
 
 QTEST_APPLESS_MAIN(TestCalorieCalculator)
